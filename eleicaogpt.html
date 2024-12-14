@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Vereador</title>
+    <style>
+        /* Estilos gerais da página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Container principal */
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        /* Título */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        /* Inputs */
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Botões */
+        button {
+            width: 48%;
+            padding: 10px;
+            margin: 10px 1%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:active {
+            background-color: #388e3c;
+        }
+
+        /* Divisões para os botões */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cadastrar Vereador</h1>
+        <input id="nome" type="text" placeholder="Nome do Vereador" required>
+        <input id="nota" type="number" placeholder="Nota" required>
+        <div class="button-container">
+            <button onclick="cadastrarVereador()">Cadastrar Vereador</button>
+            <button onclick="calcularVencedor()">Calcular Vencedor</button>
+        </div>
+    </div>
+    
+<script>
+    const vereadores = [];
+
+    function cadastrarVereador() {
+        /*
+        variaveis tipo:
+        
+        texto (String)
+        objeto (Object)
+        lista (Array)
+
+        funcoes e metodos
+
+        */
+
+        const nome = document.getElementById("nome").value
+        const nota = document.getElementById("nota").value
+        
+        if (nome && nota ) {
+            const vereador = {
+            nome: nome,
+            nota: nota
+        }
+        vereadores.push(vereador)
+        alert("Vereador cadastrado com sucesso!")
+        }
+        else {
+            alert("Preencha os dois campos")
+        }
+    }
+
+    function calcularVencedor() {
+        if (vereadores.length > 0 ) {
+        let vencedor;
+        for (const i in vereadores) {
+            const vereador = vereadores[i];
+            vencedor = vereadores[0];
+            
+            if (parseFloat(vencedor.nota) < parseFloat(vereador.nota)) {
+                vencedor = vereador;
+            }
+        }
+        alert('O vencedor foi: ' + vereador.nome)
+        }else {
+            alert('Faltou cadastrar um vencedor!')
+        }
+        
+    }
+
+</script>
